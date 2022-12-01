@@ -1,0 +1,7 @@
+.needs <std>
+
+import List from "Collections";
+
+class Elf {
+    const List meals = new List(int);
+};
