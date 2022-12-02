@@ -1,6 +1,16 @@
 .needs <std>
 import * from "io" under io;
 
+List getData() {
+        const let FILENAME = "data.txt";
+        const let file = fs.openFile(FILENAME);
+
+        const let data = file.toList('\n');
+        let mappedData = data.map(string, [adr line] => return new string(line));
+        delete data;
+        return mappedData;
+};
+
 int main(){
 	io.print("Hello, World!\n");
 	return 0;
