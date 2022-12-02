@@ -1,7 +1,19 @@
 .needs <std>
 
 import List from "Collections";
+import Int from "./src/modules/Boxes";
 
 class Elf {
-    const List meals = new List(int);
+    const List meals = new List(Int);
+    private int calories = 0;
+
+    public Elf init() {
+        return my;
+    };
+
+    public int addMeal(int meal) {
+        my.meals.pushBack(new Int(meal));
+        my.calories = my.calories + meal;
+        return my.calories;
+    };
 };

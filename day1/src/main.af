@@ -1,7 +1,18 @@
 .needs <std>
 import File from "files";
 import { openFile } from "files" under fs;
+import List from "Collections";
+import { print } from "String" under st;
 
-int main(){
+List getData() {
+	const let FILENAME = "data.txt";
+	const let file = fs.openFile(FILENAME);
+
+	const let data = file.toList('\n');
+	data.forEach([adr line] => st.print(`{line}\n`));
+};
+
+int main() {
+	getData();
 	return 0;
 };
