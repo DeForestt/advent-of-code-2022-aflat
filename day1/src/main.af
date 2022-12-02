@@ -3,16 +3,49 @@ import File from "files";
 import { openFile } from "files" under fs;
 import List from "Collections";
 import { print } from "String" under st;
+import string from "String";
 
 List getData() {
 	const let FILENAME = "data.txt";
 	const let file = fs.openFile(FILENAME);
 
 	const let data = file.toList('\n');
-	data.forEach([adr line] => st.print(`{line}\n`));
+	let mappedData = data.map(string, [adr line] => return new string(line));
+	delete data;
+	return mappedData;
 };
 
 int main() {
-	getData();
+	let data = getData();
+	int first = 0;
+	int second = 0;
+	int third = 0;
+
+	int curr = 0;
+	for int i = 0; i < data.getCount(); i++ {
+		string line = data.get(i);
+		if (line.len() > 0) {
+			if !line.isNumeric() {
+				st.print(`Error: line {i} is not numeric.\nLine: {line}`);
+				return 1;
+			};
+			curr = curr + line.toInt();
+		} else {
+			if (curr > first) {
+				third = second;
+				second = first;
+				first = curr;
+			} else if (curr > second) {
+				third = second;
+				second = curr;
+			} else if (curr > third) {
+				third = curr;
+			};
+			curr = 0;
+		};
+	};
+
+	st.print(`Highest: {first}\nSecond: {second}\nThird: {third}\n`);
+	st.print(`Sum: {first + second + third}\n`);
 	return 0;
 };
