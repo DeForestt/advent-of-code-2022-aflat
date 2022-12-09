@@ -1,17 +1,92 @@
 .needs <std>
-import * from "io" under io;
+import string from "String";
+import { print } from "String" under st;
+import { openFile } from "files" under fs;
+import File from "files";
+import List from "Collections";
+
+
+class Round {
+	char them = them;
+	char me = me;
+
+	Round init(char them, char me) {
+		return my;
+	};
+
+	string toString() {
+		return `me: {my.me}, them: {my.them}`;
+	};
+
+	int getScore() {
+		// a == rock, b == paper, c == scissors -> them
+		// x == lose, y == win, z == sraw -> me
+		
+		const int ROCK = 1;
+		const int PAPER = 2;
+		const int SCISSORS = 3;
+
+		// lose conditions
+		if my.me == 'X' {
+			int score = 0;
+			if my.them == 'A'
+				score = score + SCISSORS
+			else if my.them == 'B'
+				score = score + ROCK
+			else if my.them == 'C'
+				score = score + PAPER;
+		} else if my.me == 'Y' {
+			int score = 3;
+			if my.them == 'A'
+				score = score + ROCK
+			else if my.them == 'B'
+				score = score + PAPER
+			else if my.them == 'C'
+				score = score + SCISSORS;
+		} else if my.me == 'Z' {
+			int score = 6;
+			if my.them == 'A'
+				score = score + PAPER
+			else if my.them == 'B'
+				score = score + SCISSORS
+			else if my.them == 'C'
+				score = score + ROCK;
+		} else {
+			st.print(`invalid choice {my.me}`);
+			return 0;
+		};
+	};
+};
 
 List getData() {
-        const let FILENAME = "data.txt";
-        const let file = fs.openFile(FILENAME);
+	const let FILENAME = "data.txt";
+	const let file = fs.openFile(FILENAME);
 
-        const let data = file.toList('\n');
-        let mappedData = data.map(string, [adr line] => return new string(line));
-        delete data;
-        return mappedData;
+	const let data = file.toList('\n');
+	let mappedData = data.map(string, [adr line] => {
+		return new string(line);
+	});
+
+	let rounds = new List(Round, mappedData.getCount());
+
+	mappedData.forEach([string line] => {
+		rounds.pushBack(Round(line.at(0), line.at(2)))
+	}, rounds);
+
+	return rounds;
 };
 
 int main(){
-	io.print("Hello, World!\n");
+	let rounds = getData();
+
+	int sum = 0;
+	int count;
+	for int i = 0; i < rounds.getCount(); i++; {
+		Round round = rounds.get(i);
+		sum = sum + round.getScore();
+	};
+
+	st.print(`score: {sum}\n`);
+
 	return 0;
 };
