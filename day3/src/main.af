@@ -1,0 +1,46 @@
+.needs <std>
+import string from "String";
+import { print } from "String" under st;
+import { openFile } from "files" under fs;
+import File from "files";
+import List from "Collections";
+
+List getData() {
+	const let FILENAME = "data.txt";
+	const let file = fs.openFile(FILENAME);
+
+	const let data = file.toList('\n');
+	return data;
+};
+
+int main(){
+	
+	const let data = getData();
+	int total = 0;
+	for int i = 0; i < data.getCount(); i++ {
+		string line = new string(data.get(i));
+		let length = line.len();
+		int half = length / 2;
+		let firstHalf = line.subString(0, half);
+		let secondHalf = line.subString(half, length);
+
+		for int j = 0; j < half; j++ {
+			let c = firstHalf.at(j);
+			int index = secondHalf.indexOf(c);
+			if (index != -1) {
+				char[4] bytes;
+				bytes =: 0;
+				bytes[0] = c;
+			
+				int val = bytes as int;
+
+				val = if val > 96 val - 96 else val - 38;
+				total = total + val;
+				break;
+			};
+		};
+	};
+
+	st.print(`total: {total}\n`);
+	return 0;
+};
