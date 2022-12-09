@@ -14,13 +14,6 @@ List getData() {
 	return data;
 };
 
-int getScore(char c) {
-	char[4] buffer;
-	buffer =: 0;
-	buffer[0] = c;
-	return buffer as int;
-};
-
 int main(){
 	
 	const let data = getData();
