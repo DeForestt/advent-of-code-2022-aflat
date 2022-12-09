@@ -10,37 +10,42 @@ List getData() {
 	const let file = fs.openFile(FILENAME);
 
 	const let data = file.toList('\n');
+
 	return data;
+};
+
+int getScore(char c) {
+	char[4] buffer;
+	buffer =: 0;
+	buffer[0] = c;
+	return buffer as int;
 };
 
 int main(){
 	
 	const let data = getData();
+
 	int total = 0;
-	for int i = 0; i < data.getCount(); i++ {
-		string line = new string(data.get(i));
-		let length = line.len();
-		int half = length / 2;
-		let firstHalf = line.subString(0, half);
-		let secondHalf = line.subString(half, length);
+	int i;
+	for i = 0; i < data.getCount(); i++ {
+		const string line1 = new string(data.get(i));
+		const string line2 = new string(data.get(i+1));
+		const string line3 = new string(data.get(i+2));
 
-		for int j = 0; j < half; j++ {
-			let c = firstHalf.at(j);
-			int index = secondHalf.indexOf(c);
-			if (index != -1) {
-				char[4] bytes;
-				bytes =: 0;
-				bytes[0] = c;
-			
-				int val = bytes as int;
-
-				val = if val > 96 val - 96 else val - 38;
-				total = total + val;
+		i = i + 2;
+		
+		for int j = 0; j < line1.len(); j++ {
+			const let ch = line1.at(j);
+			if (line2.indexOf(ch) != -1) & (line3.indexOf(ch) != -1) {
+				char[4] buffer = {ch, '\0', '\0', '\0'};
+				const let score = if ch >= 'a' buffer as int - 96 else buffer as int - 38;
+				
+				total = total + score;
 				break;
 			};
 		};
 	};
 
-	st.print(`total: {total}\n`);
+	st.print(`total: {i}; score: {total}\n`);
 	return 0;
 };
