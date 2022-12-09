@@ -20,7 +20,7 @@ class Round {
 
 	int getScore() {
 		// a == rock, b == paper, c == scissors -> them
-		// x == lose, y == win, z == sraw -> me
+		// x == lose, y == win, z == draw -> me
 		
 		const int ROCK = 1;
 		const int PAPER = 2;
